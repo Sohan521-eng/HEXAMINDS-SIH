@@ -1,0 +1,119 @@
+.fold-text {
+  display: inline-block;
+  color: var(--fold-text-color, currentColor);
+  font-size: var(--fold-text-font-size, inherit);
+  font-weight: var(--fold-text-font-weight, inherit);
+  line-height: var(--fold-text-line-height, 1.15);
+  letter-spacing: var(--fold-text-letter-spacing, inherit);
+  white-space: pre-wrap;
+  user-select: text;
+  perspective: var(--fold-perspective, 600px);
+  transform-style: preserve-3d;
+}
+
+.fold-text-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fold-text-visual {
+  display: inline;
+  transform-style: preserve-3d;
+}
+
+.fold-text-line {
+  display: block;
+  transform-style: preserve-3d;
+}
+
+.fold-text-whitespace {
+  display: inline-block;
+}
+
+.fold-text-word {
+  display: inline-block;
+  white-space: nowrap;
+  transform-style: preserve-3d;
+}
+
+.fold-text-segment {
+  display: inline-block;
+  font-family: inherit;
+  line-height: inherit;
+  perspective: var(--fold-perspective, 600px);
+  transform-style: preserve-3d;
+  vertical-align: baseline;
+  position: relative;
+}
+
+.fold-text-segment[data-fold-split='line'] {
+  display: block;
+}
+
+.fold-text-piece {
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+  line-height: inherit;
+  transform-style: preserve-3d;
+  transform-origin: 50% 0%;
+  backface-visibility: visible;
+  will-change: transform, opacity, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fold-text-piece {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}
+
+.fold-text-content {
+  display: inline-block;
+  font-family: inherit;
+  line-height: inherit;
+  color: var(--fold-text-color, currentColor);
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.95)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.85));
+}
+
+.fold-text-content.is-solid {
+  color: var(--fold-solid-color, #FFFFFF) !important;
+  -webkit-text-fill-color: var(--fold-solid-color, #FFFFFF) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  animation: none !important;
+}
+
+.fold-text-content.has-gradient {
+  background-image: var(--fold-gradient-image);
+  background-size: var(--line-bg-width, 2500px) 100%;
+  background-repeat: repeat-x;
+  background-position: calc(0px - var(--char-offset, 0px)) 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent !important;
+  animation: foldLineGradientMove var(--fold-gradient-speed, 5s) linear infinite;
+}
+
+@keyframes foldLineGradientMove {
+  0% {
+    background-position: calc(0px - var(--char-offset, 0px)) 50%;
+  }
+  50% {
+    background-position: calc(calc(-1 * var(--line-width, 1000px)) - var(--char-offset, 0px)) 50%;
+  }
+  100% {
+    background-position: calc(0px - var(--char-offset, 0px)) 50%;
+  }
+}
+

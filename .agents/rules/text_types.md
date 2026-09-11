@@ -1,0 +1,1 @@
+While developing, creating, adding, designing or editing any part of the UI, you should always refer to the "TEXT_TYPES.md" specification (The 5 Systematic Typography Systems & Page-by-Page Typography Mapping) and proceed according to that.

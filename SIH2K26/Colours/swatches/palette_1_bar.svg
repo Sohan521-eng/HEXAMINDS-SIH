@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="46" viewBox="0 0 650 46" style="border-radius: 8px; overflow: hidden; border: 1px solid #1E3252;">
+    <g>
+      <rect x="0" y="0" width="130" height="46" fill="#050B14" />
+      <text x="65" y="19" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">#050B14</text>
+      <text x="65" y="34" fill="#FFFFFF" opacity="0.85" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="9" text-anchor="middle">Deep Abyss</text>
+    </g>
+<g>
+      <rect x="130" y="0" width="130" height="46" fill="#0F1B2F" />
+      <text x="195" y="19" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">#0F1B2F</text>
+      <text x="195" y="34" fill="#FFFFFF" opacity="0.85" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="9" text-anchor="middle">Satellite Slate</text>
+    </g>
+<g>
+      <rect x="260" y="0" width="130" height="46" fill="#00F2FE" />
+      <text x="325" y="19" fill="#050B14" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">#00F2FE</text>
+      <text x="325" y="34" fill="#050B14" opacity="0.85" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="9" text-anchor="middle">Cyclone Cyan</text>
+    </g>
+<g>
+      <rect x="390" y="0" width="130" height="46" fill="#FF5E36" />
+      <text x="455" y="19" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">#FF5E36</text>
+      <text x="455" y="34" fill="#FFFFFF" opacity="0.85" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="9" text-anchor="middle">Solar Coral</text>
+    </g>
+<g>
+      <rect x="520" y="0" width="130" height="46" fill="#FFFFFF" />
+      <text x="585" y="19" fill="#050B14" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">#FFFFFF</text>
+      <text x="585" y="34" fill="#050B14" opacity="0.85" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif" font-size="9" text-anchor="middle">Pure White</text>
+    </g>
+  </svg>
