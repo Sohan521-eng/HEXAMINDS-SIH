@@ -2,27 +2,20 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Satellite, LayoutDashboard } from "lucide-react";
+import { UserCheck } from "lucide-react";
 import { gsap } from "gsap";
 
-interface SatellitePillProps {
+interface ScientistProfilePillProps {
   href?: string;
   className?: string;
   ease?: string;
 }
 
-export const SatellitePill: React.FC<SatellitePillProps> = ({
-  href = "/satellite-analyzer",
+export const ScientistProfilePill: React.FC<ScientistProfilePillProps> = ({
+  href = "/login",
   className = "",
   ease = "power2.easeOut",
 }) => {
-  const pathname = usePathname();
-  const isSatelliteAnalyzer = pathname === "/satellite-analyzer" || pathname?.startsWith("/satellite-analyzer");
-
-  const targetHref = isSatelliteAnalyzer ? "/dashboard" : href;
-  const targetTitle = isSatelliteAnalyzer ? "Go to Mission Command Dashboard" : "Analyze Satellite Feed";
-
   const circleRef = useRef<HTMLSpanElement | null>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const pillRef = useRef<HTMLAnchorElement | null>(null);
@@ -61,7 +54,7 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
       tlRef.current?.kill();
       const tl = gsap.timeline({ paused: true });
 
-      tl.to(circle, { scale: 1.2, xPercent: -50, duration: 1.6, ease, overwrite: "auto" }, 0);
+      tl.to(circle, { scale: 1.5, xPercent: -50, duration: 1.6, ease, overwrite: "auto" }, 0);
 
       if (label) {
         tl.to(label, { y: -(h + 8), duration: 1.6, ease, overwrite: "auto" }, 0);
@@ -85,7 +78,7 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
     }
 
     return () => window.removeEventListener("resize", onResize);
-  }, [ease, isSatelliteAnalyzer]);
+  }, [ease]);
 
   const handleEnter = () => {
     const tl = tlRef.current;
@@ -110,11 +103,12 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
   return (
     <Link
       ref={pillRef}
-      href={targetHref}
-      className={`satellite-pill ${className}`}
+      href={href}
+      className={`scientist-pill ${className}`}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      title={targetTitle}
+      title="Scientist Operational Profile"
+      aria-label="Scientist Profile"
     >
       <span
         className="hover-circle"
@@ -123,38 +117,24 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
       />
       <span className="label-stack">
         <span className="pill-label">
-          {isSatelliteAnalyzer ? (
-            <>
-              <LayoutDashboard className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0" />
-              <span className="hidden xl:inline">Live </span>
-              <span>Dashboard</span>
-            </>
-          ) : (
-            <>
-              <Satellite className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0" />
-              <span className="hidden xl:inline">Analyze </span>
-              <span>Satellite Feed</span>
-            </>
-          )}
+          <UserCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0" />
+          <span className="text-white font-rajdhani font-bold text-xs uppercase tracking-wider hidden xl:inline">
+            Scientist (IMD)
+          </span>
+          <span className="text-white font-rajdhani font-bold text-xs uppercase tracking-wider xl:hidden">
+            SC
+          </span>
         </span>
         <span className="pill-label-hover" aria-hidden="true">
-          {isSatelliteAnalyzer ? (
-            <>
-              <LayoutDashboard className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
-              <span className="hidden xl:inline">Live </span>
-              <span>Dashboard</span>
-            </>
-          ) : (
-            <>
-              <Satellite className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
-              <span className="hidden xl:inline">Analyze </span>
-              <span>Satellite Feed</span>
-            </>
-          )}
+          <UserCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
+          <span className="text-[#050B14] font-rajdhani font-bold text-xs uppercase tracking-wider hidden xl:inline">
+            Scientist (IMD)
+          </span>
+          <span className="text-[#050B14] font-rajdhani font-bold text-xs uppercase tracking-wider xl:hidden">
+            SC
+          </span>
         </span>
       </span>
     </Link>
   );
 };
-
-export default SatellitePill;

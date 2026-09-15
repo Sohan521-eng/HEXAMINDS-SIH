@@ -1,0 +1,101 @@
+Based on the provided `image_09ae68.jpg` UI mock-up and cross-referencing it with the `DASHBOARD_4.md` blueprint, here is a detailed, section-by-section breakdown of what the dashboard currently contains.
+
+The mock-up deviates slightly from the exact 6-Tier architecture in the markdown, opting for a more traditional "Left Sidebar + Top Nav + Main Content" layout.
+
+---
+
+### 1. Global Top Navigation Bar (Tier 1 Equivalent)
+
+This sits at the very top, acting as the primary system header.
+
+* **Brand Logo & Name:** "CYTORN" on the far left.
+* **System Status Pill:** "[ CYTORN • OPERATIONAL ] National Cyclone Command Center - SIH 2024".
+* **Warning & Action Buttons (Center):**
+* 🔴 "ACTIVE WARNING: CYCLONE MOCHA" (Alert pill)
+* "ANALYZE SATELLITE FEED" (Action button)
+* "LAUNCH DASHBOARD" (Action button)
+
+
+* **Time & Status (Right):**
+* Dual Chronometer: "10:48 UTC | 16:18 IST"
+
+
+* System Status: "MOSDAC Stream: Synced"
+
+
+* **User Profile:** "Scientist (IMD)" with an avatar/notification bell.
+
+
+
+### 2. Left-Hand Sidebar Navigation
+
+This replaces the floating layer stack from the MD file with a permanent navigation drawer.
+
+* **"MISSION OPERATIONS" Group:**
+* 🟢 "Live Command" (Currently active tab)
+* "Satellite Analyzer"
+* "AI Trajectory"
+* "Disaster Alerts"
+* "Model Performance"
+
+
+* **"MONITORED BASIN" Group:**
+* "Bay of Bengal (IMD Priority Sector - BOB-02)"
+
+
+
+### 3. Top Context Bar (Above the Map)
+
+This sits just below the global nav, providing context for the currently viewed data.
+
+* **Active Basin/Sector:** "BAY OF BENGAL • SECTOR BOB-02"
+* **Data Source Info:** "Active Cycle: INSAT-3DR Rapid Scan (15m)"
+* **Action Button:** "AI EXPLAINABILITY STUDIO"
+
+### 4. Horizontal Telemetry Strip (Tier 4 Equivalent)
+
+Instead of a right-side panel as described in the blueprint, vital telemetry is displayed in a horizontal row of cards above the map.
+
+* **Max Wind Speed:** "155 km/h" (+10km/h in 3h)
+* **Central Pressure:** "964 hPa" (-4hPa rapid drop)
+* **Sea Surface Temp:** "30.4 °C" (Above threshold 26°C)
+* **Vertical Wind Shear:** "8.5 kts" (Favorable < 10 kts)
+* **Relative Humidity:** "86%" (Mid-troposphere saturated)
+* **Estimated Rainfall:** "220 mm/24h" (Extreme core band)
+
+### 5. Central Geospatial Map Canvas (Tier 3 Equivalent)
+
+This is the primary visual area in the center-left.
+
+* **Header:** "Geospatial Satellite & Radar View (MapLibre GL + deck.gl)"
+* **Canvas Area:** A dark placeholder area meant for the high-performance rendering of multi-source INSAT-3DR overlays, radar, and trajectory vectors.
+
+
+* **Map Controls (Top Right of Canvas):** Layer icon and Fullscreen `[⛶]` icon.
+
+
+* **Status/Coordinates (Bottom Left of Canvas):** "16.234°N, 88.412°E | Zoom 6.2 | North Indian Ocean Basin".
+
+
+
+### 6. Right-Side Diagnostics & Trends Panel (Tier 4/6 Equivalent)
+
+This panel handles specific storm data and forecasting.
+
+* **Storm Identification Card:**
+* ID/Warning: "BOB-02/2026" | "Stage 3 Warning"
+* Title: "CYCLONE 'REMIGR'"
+* Location: "Bay of Bengal • East Coast Threat Sector"
+* Intensity: "Category 4 Severe"
+* AI Confidence: "96.4%"
+* Estimated Landfall: "T-24h (Puri-Dhamra Sector)"
+
+
+* **Meteorological Trends Chart:**
+* Tabs: "METEOROLOGICAL TRENDS" / "XAI ASSISTANT"
+* Title: "Meteorological Trends & Rapid Intensification"
+* Legend: Wind (kts) vs Pressure (hPa)
+* Chart Area: A placeholder for a "Recharts Temporal Projection Chart" showing historical 24-hr observations vs 48-hr AI forecasts.
+
+
+* **Action Button (Bottom Right):** "CYCLONE AI ASSISTANT / Explain Model Predictions".

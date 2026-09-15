@@ -17,6 +17,15 @@ import {
 export function AppSidebar() {
   const pathname = usePathname();
 
+  if (
+    pathname === "/dashboard" || 
+    pathname?.startsWith("/dashboard") ||
+    pathname === "/satellite-analyzer" ||
+    pathname?.startsWith("/satellite-analyzer")
+  ) {
+    return null;
+  }
+
   const navigation = [
     { name: "Live Command", href: "/dashboard", icon: Radio },
     { name: "Satellite Analyzer", href: "/satellite-analyzer", icon: Satellite },
@@ -26,7 +35,7 @@ export function AppSidebar() {
   ];
 
   return (
-    <aside className="w-64 border-r border-[#1E3252] bg-[#050B14]/95 backdrop-blur-xl flex flex-col justify-between shrink-0 p-4 h-[calc(100vh-4rem)]">
+    <aside className="w-64 border-r border-[#1E3252] bg-[#050B14]/95 backdrop-blur-xl flex flex-col justify-between shrink-0 p-4 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] sticky top-16 sm:top-20">
       <div className="space-y-6">
         <div>
           <p className="px-3 text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E9EB5] mb-2">

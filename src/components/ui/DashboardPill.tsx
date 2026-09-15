@@ -2,7 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { Radio, ChevronRight } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Radio, ChevronRight, Home } from "lucide-react";
 import { gsap } from "gsap";
 
 interface DashboardPillProps {
@@ -12,10 +13,17 @@ interface DashboardPillProps {
 }
 
 export const DashboardPill: React.FC<DashboardPillProps> = ({
-  href = "/dashboard",
+  href,
   className = "",
   ease = "power2.easeOut",
 }) => {
+  const pathname = usePathname();
+  const isDashboard = pathname !== "/" && !pathname?.startsWith("/login") && !pathname?.startsWith("/register");
+
+  const targetHref = isDashboard ? "/" : (href || "/dashboard");
+  const targetLabel = isDashboard ? "Landing Page" : "Launch Dashboard";
+  const targetTitle = isDashboard ? "Return to Landing Page" : "Launch Mission Command HUD";
+
   const circleRef = useRef<HTMLSpanElement | null>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const pillRef = useRef<HTMLAnchorElement | null>(null);
@@ -78,7 +86,7 @@ export const DashboardPill: React.FC<DashboardPillProps> = ({
     }
 
     return () => window.removeEventListener("resize", onResize);
-  }, [ease]);
+  }, [ease, isDashboard]);
 
   const handleEnter = () => {
     const tl = tlRef.current;
@@ -103,11 +111,11 @@ export const DashboardPill: React.FC<DashboardPillProps> = ({
   return (
     <Link
       ref={pillRef}
-      href={href}
+      href={targetHref}
       className={`dashboard-pill ${className}`}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      title="Launch Mission Command HUD"
+      title={targetTitle}
     >
       <span
         className="hover-circle"
@@ -116,13 +124,21 @@ export const DashboardPill: React.FC<DashboardPillProps> = ({
       />
       <span className="label-stack">
         <span className="pill-label">
-          <Radio className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0 animate-pulse" />
-          <span>Launch Dashboard</span>
+          {isDashboard ? (
+            <Home className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0" />
+          ) : (
+            <Radio className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0 animate-pulse" />
+          )}
+          <span>{targetLabel}</span>
           <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0" />
         </span>
         <span className="pill-label-hover" aria-hidden="true">
-          <Radio className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
-          <span>Launch Dashboard</span>
+          {isDashboard ? (
+            <Home className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
+          ) : (
+            <Radio className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
+          )}
+          <span>{targetLabel}</span>
           <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
         </span>
       </span>

@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
+import "./Noise.css";
 
-interface NoiseProps {
+export interface NoiseProps {
   patternSize?: number;
   patternScaleX?: number;
   patternScaleY?: number;
   patternRefreshInterval?: number;
   patternAlpha?: number;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export const Noise: React.FC<NoiseProps> = ({
@@ -18,6 +20,7 @@ export const Noise: React.FC<NoiseProps> = ({
   patternRefreshInterval = 2,
   patternAlpha = 15,
   className = "",
+  style = {},
 }) => {
   const grainRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -30,7 +33,7 @@ export const Noise: React.FC<NoiseProps> = ({
 
     let frame = 0;
     let animationId: number;
-    const canvasSize = Math.min(patternSize, 120);
+    const canvasSize = patternSize || 250;
 
     const resize = () => {
       if (!canvas) return;
@@ -38,11 +41,18 @@ export const Noise: React.FC<NoiseProps> = ({
       canvas.height = canvasSize;
       canvas.style.width = "100%";
       canvas.style.height = "100%";
+
+      if (patternScaleX !== 1 || patternScaleY !== 1) {
+        canvas.style.transform = `scale(${patternScaleX}, ${patternScaleY})`;
+        canvas.style.transformOrigin = "0 0";
+      } else {
+        canvas.style.transform = "none";
+      }
     };
 
-    // Pre-cache 6 randomized noise frames once to avoid heavy CPU thrashing in the render loop
+    // Pre-cache 10 randomized noise frames to avoid CPU thrashing across multiple cards
     const cachedFrames: ImageData[] = [];
-    for (let f = 0; f < 6; f++) {
+    for (let f = 0; f < 10; f++) {
       const imgData = ctx.createImageData(canvasSize, canvasSize);
       const data = imgData.data;
       for (let i = 0; i < data.length; i += 4) {
@@ -79,7 +89,7 @@ export const Noise: React.FC<NoiseProps> = ({
     <canvas
       className={`noise-overlay ${className}`}
       ref={grainRef}
-      style={{ imageRendering: "pixelated" }}
+      style={{ imageRendering: "pixelated", ...style }}
       aria-hidden="true"
     />
   );

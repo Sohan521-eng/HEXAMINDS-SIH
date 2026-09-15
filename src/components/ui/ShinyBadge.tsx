@@ -2,12 +2,14 @@
 
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import { motion, useMotionValue, useAnimationFrame, useTransform } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export interface ShinyBadgeProps {
   children?: React.ReactNode;
   disabled?: boolean;
   speed?: number;
   className?: string;
+  innerClassName?: string;
   borderColor?: string;
   borderShineColor?: string;
   surfaceColor?: string;
@@ -17,6 +19,7 @@ export interface ShinyBadgeProps {
   pauseOnHover?: boolean;
   direction?: "left" | "right";
   delay?: number;
+  roundedClassName?: string;
 }
 
 export const ShinyBadge: React.FC<ShinyBadgeProps> = ({
@@ -24,6 +27,7 @@ export const ShinyBadge: React.FC<ShinyBadgeProps> = ({
   disabled = false,
   speed = 2.5,
   className = "",
+  innerClassName = "",
   borderColor = "rgba(0, 242, 254, 0.4)",
   borderShineColor = "#ffffff",
   surfaceColor = "rgba(0, 242, 254, 0.2)",
@@ -33,6 +37,7 @@ export const ShinyBadge: React.FC<ShinyBadgeProps> = ({
   pauseOnHover = false,
   direction = "right",
   delay = 1,
+  roundedClassName = "rounded-full",
 }) => {
   const [isPaused, setIsPaused] = useState(false);
   const progress = useMotionValue(0);
@@ -118,26 +123,36 @@ export const ShinyBadge: React.FC<ShinyBadgeProps> = ({
 
   return (
     <div
-      className={`relative inline-flex items-center justify-center p-[1px] rounded-full overflow-hidden select-none shadow-[0_0_25px_rgba(0,242,254,0.25)] cursor-default ${className}`}
+      className={cn(
+        "relative inline-flex items-center justify-center p-[1px] overflow-hidden select-none shadow-[0_4px_14px_rgba(0,0,0,0.35),0_1px_3px_rgba(0,0,0,0.2),0_0_10px_rgba(0,242,254,0.15)] cursor-default",
+        roundedClassName,
+        className
+      )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* 1. Glowing Animated Border Shine */}
       <motion.div
-        className="absolute inset-0 rounded-full pointer-events-none"
+        className={`absolute inset-0 ${roundedClassName} pointer-events-none`}
         style={{ ...borderGradientStyle, backgroundPosition }}
       />
 
-      {/* 2. Inner Pill Body */}
-      <div className="relative rounded-full px-4 py-1.5 bg-[#0F1B2F]/90 backdrop-blur-md flex items-center gap-2 overflow-hidden">
+      {/* 2. Inner Body with crisp border reinforcement */}
+      <div
+        className={cn(
+          "relative px-3.5 py-1.5 bg-[#0F1B2F]/95 backdrop-blur-md border border-[rgba(0,242,254,0.4)] flex items-center gap-2 overflow-hidden",
+          roundedClassName,
+          innerClassName
+        )}
+      >
         {/* 3. Sweeping Surface Specular Glare across entire container */}
         <motion.div
-          className="absolute inset-0 pointer-events-none rounded-full z-20"
+          className={`absolute inset-0 pointer-events-none ${roundedClassName} z-10`}
           style={{ ...surfaceGradientStyle, backgroundPosition }}
         />
 
         {/* 4. Child Elements (Icon + Text) */}
-        <div className="relative z-10 flex items-center gap-2">
+        <div className="relative z-20 flex items-center gap-2">
           {children}
         </div>
       </div>

@@ -2,27 +2,20 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Satellite, LayoutDashboard } from "lucide-react";
+import { Bell } from "lucide-react";
 import { gsap } from "gsap";
 
-interface SatellitePillProps {
+interface AlertsPillProps {
   href?: string;
   className?: string;
   ease?: string;
 }
 
-export const SatellitePill: React.FC<SatellitePillProps> = ({
-  href = "/satellite-analyzer",
+export const AlertsPill: React.FC<AlertsPillProps> = ({
+  href = "/alerts",
   className = "",
   ease = "power2.easeOut",
 }) => {
-  const pathname = usePathname();
-  const isSatelliteAnalyzer = pathname === "/satellite-analyzer" || pathname?.startsWith("/satellite-analyzer");
-
-  const targetHref = isSatelliteAnalyzer ? "/dashboard" : href;
-  const targetTitle = isSatelliteAnalyzer ? "Go to Mission Command Dashboard" : "Analyze Satellite Feed";
-
   const circleRef = useRef<HTMLSpanElement | null>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const pillRef = useRef<HTMLAnchorElement | null>(null);
@@ -85,7 +78,7 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
     }
 
     return () => window.removeEventListener("resize", onResize);
-  }, [ease, isSatelliteAnalyzer]);
+  }, [ease]);
 
   const handleEnter = () => {
     const tl = tlRef.current;
@@ -110,11 +103,12 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
   return (
     <Link
       ref={pillRef}
-      href={targetHref}
-      className={`satellite-pill ${className}`}
+      href={href}
+      className={`alerts-pill ${className}`}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      title={targetTitle}
+      aria-label="Active Alerts"
+      title="Active Disaster Warnings & Alerts"
     >
       <span
         className="hover-circle"
@@ -123,38 +117,12 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
       />
       <span className="label-stack">
         <span className="pill-label">
-          {isSatelliteAnalyzer ? (
-            <>
-              <LayoutDashboard className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0" />
-              <span className="hidden xl:inline">Live </span>
-              <span>Dashboard</span>
-            </>
-          ) : (
-            <>
-              <Satellite className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0" />
-              <span className="hidden xl:inline">Analyze </span>
-              <span>Satellite Feed</span>
-            </>
-          )}
+          <Bell className="w-4 h-4 text-[#00F2FE] drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]" />
         </span>
         <span className="pill-label-hover" aria-hidden="true">
-          {isSatelliteAnalyzer ? (
-            <>
-              <LayoutDashboard className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
-              <span className="hidden xl:inline">Live </span>
-              <span>Dashboard</span>
-            </>
-          ) : (
-            <>
-              <Satellite className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
-              <span className="hidden xl:inline">Analyze </span>
-              <span>Satellite Feed</span>
-            </>
-          )}
+          <Bell className="w-4 h-4 text-[#050B14]" />
         </span>
       </span>
     </Link>
   );
 };
-
-export default SatellitePill;

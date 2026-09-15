@@ -35,10 +35,10 @@ export function ImageUploader({ onImageSelect }: { onImageSelect?: (file: File) 
       </div>
 
       <p className="text-xs font-bold text-white mb-1">
-        Drag and drop satellite raster or HDF5 imagery
+        Drag and drop your satellite image here
       </p>
       <p className="text-[11px] font-mono text-[#8E9EB5] mb-3">
-        Supports INSAT-3DR HDF5, GeoTIFF, NetCDF, and PNG
+        Supports JPG, JPEG and PNG
       </p>
 
       {selectedFile ? (

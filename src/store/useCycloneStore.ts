@@ -30,7 +30,7 @@ interface CycloneStoreState {
 }
 
 export const useCycloneStore = create<CycloneStoreState>((set) => ({
-  activeStormId: "BOB-02-REMIGR",
+  activeStormId: "BOB-02-MOCHA",
   activeBasin: "Bay of Bengal",
   selectedTimestamp: null,
   playbackSpeed: 1,

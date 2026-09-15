@@ -1,0 +1,33 @@
+Based on the detailed `LANDING_PAGE_3.md` blueprint, the landing page consists of the following 5 primary sections:
+
+1. **Section A: Global Navigation Header**
+
+* This is a floating glassmorphic bar featuring the "CYCLO-AI" logo, a live warning status pill, navigation links (Home, Live Dashboard, AI Analyzer, Forecasts, Alerts, Docs), a theme switcher, and a "Launch Dashboard" call-to-action button.
+
+
+
+
+2. **Section B: 3D Interactive WebGL Hero Canvas**
+
+* The main visual centerpiece featuring a 3D Earth globe, procedural cyclone vortex, GPU-instanced wind streamlines, and an orbital satellite model with a scanning cone. It includes interactive elements like 360° orbit, parallax depth, and clickable eye hotspots. It also features glassmorphic HUD overlays displaying a feed badge, telemetry box, performance monitor, and shader HUD.
+
+
+
+
+3. **Section C: Real-Time Live Storm Ticker & Alert Bar**
+
+* A full-width marquee-style strip displaying live updates, including an active cyclones counter and metadata chips detailing storm name, classification, coordinates, wind speed, pressure, and heading.
+
+
+
+
+4. **Section D: Core Technology & Capability Cards**
+
+* A 4-column responsive grid displaying key features: Multi-Source Satellite Fusion, Deep Learning Pattern Studio, Physics-Informed Forecasting, and Explainable AI (XAI / Grad-CAM).
+
+
+
+
+5. **Section E: Institutional Credits & Emergency Footer**
+
+* The footer section attributing partners (IMD, ISRO/MOSDAC, NOAA, WMO) and providing emergency broadcast links like the NDMA National Disaster Helpline (1078) and direct system links.

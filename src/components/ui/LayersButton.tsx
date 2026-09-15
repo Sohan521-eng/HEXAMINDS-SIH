@@ -1,39 +1,33 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Satellite, LayoutDashboard } from "lucide-react";
+import { Layers } from "lucide-react";
 import { gsap } from "gsap";
 
-interface SatellitePillProps {
-  href?: string;
+interface LayersButtonProps {
+  isOpen?: boolean;
+  onClick?: () => void;
   className?: string;
   ease?: string;
 }
 
-export const SatellitePill: React.FC<SatellitePillProps> = ({
-  href = "/satellite-analyzer",
+export const LayersButton: React.FC<LayersButtonProps> = ({
+  isOpen = false,
+  onClick,
   className = "",
   ease = "power2.easeOut",
 }) => {
-  const pathname = usePathname();
-  const isSatelliteAnalyzer = pathname === "/satellite-analyzer" || pathname?.startsWith("/satellite-analyzer");
-
-  const targetHref = isSatelliteAnalyzer ? "/dashboard" : href;
-  const targetTitle = isSatelliteAnalyzer ? "Go to Mission Command Dashboard" : "Analyze Satellite Feed";
-
   const circleRef = useRef<HTMLSpanElement | null>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
-  const pillRef = useRef<HTMLAnchorElement | null>(null);
+  const btnRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const layout = () => {
       const circle = circleRef.current;
-      const pill = pillRef.current;
-      if (!circle || !pill) return;
+      const btn = btnRef.current;
+      if (!circle || !btn) return;
 
-      const rect = pill.getBoundingClientRect();
+      const rect = btn.getBoundingClientRect();
       const { width: w, height: h } = rect;
       if (w === 0 || h === 0) return;
 
@@ -52,8 +46,8 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
         transformOrigin: `50% ${originY}px`,
       });
 
-      const label = pill.querySelector(".pill-label");
-      const white = pill.querySelector(".pill-label-hover");
+      const label = btn.querySelector(".pill-label");
+      const white = btn.querySelector(".pill-label-hover");
 
       if (label) gsap.set(label, { y: 0 });
       if (white) gsap.set(white, { y: h + 12, opacity: 0 });
@@ -61,7 +55,7 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
       tlRef.current?.kill();
       const tl = gsap.timeline({ paused: true });
 
-      tl.to(circle, { scale: 1.2, xPercent: -50, duration: 1.6, ease, overwrite: "auto" }, 0);
+      tl.to(circle, { scale: 1.5, xPercent: -50, duration: 1.6, ease, overwrite: "auto" }, 0);
 
       if (label) {
         tl.to(label, { y: -(h + 8), duration: 1.6, ease, overwrite: "auto" }, 0);
@@ -85,7 +79,7 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
     }
 
     return () => window.removeEventListener("resize", onResize);
-  }, [ease, isSatelliteAnalyzer]);
+  }, [ease]);
 
   const handleEnter = () => {
     const tl = tlRef.current;
@@ -108,13 +102,15 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
   };
 
   return (
-    <Link
-      ref={pillRef}
-      href={targetHref}
-      className={`satellite-pill ${className}`}
+    <button
+      ref={btnRef}
+      type="button"
+      onClick={onClick}
+      className={`layers-pill-btn ${isOpen ? "active" : ""} ${className}`}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      title={targetTitle}
+      title="Toggle Multi-Spectral Layer Stack"
+      aria-label="Toggle Multi-Spectral Layer Stack"
     >
       <span
         className="hover-circle"
@@ -123,38 +119,20 @@ export const SatellitePill: React.FC<SatellitePillProps> = ({
       />
       <span className="label-stack">
         <span className="pill-label">
-          {isSatelliteAnalyzer ? (
-            <>
-              <LayoutDashboard className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0" />
-              <span className="hidden xl:inline">Live </span>
-              <span>Dashboard</span>
-            </>
-          ) : (
-            <>
-              <Satellite className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#00F2FE] shrink-0" />
-              <span className="hidden xl:inline">Analyze </span>
-              <span>Satellite Feed</span>
-            </>
-          )}
+          <Layers className="w-4 h-4 text-[#00F2FE] shrink-0" />
+          <span className="text-white font-rajdhani font-bold text-xs uppercase tracking-wider">
+            Layers
+          </span>
         </span>
         <span className="pill-label-hover" aria-hidden="true">
-          {isSatelliteAnalyzer ? (
-            <>
-              <LayoutDashboard className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
-              <span className="hidden xl:inline">Live </span>
-              <span>Dashboard</span>
-            </>
-          ) : (
-            <>
-              <Satellite className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#050B14] shrink-0" />
-              <span className="hidden xl:inline">Analyze </span>
-              <span>Satellite Feed</span>
-            </>
-          )}
+          <Layers className="w-4 h-4 text-[#050B14] shrink-0" />
+          <span className="text-[#050B14] font-rajdhani font-bold text-xs uppercase tracking-wider">
+            Layers
+          </span>
         </span>
       </span>
-    </Link>
+    </button>
   );
 };
 
-export default SatellitePill;
+export default LayersButton;
