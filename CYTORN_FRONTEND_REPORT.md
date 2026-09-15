@@ -20,8 +20,11 @@
    - 2.5 [Phase 5: High-Precision Hero Video & Glassmorphic Telemetry HUDs](#25-phase-5-high-precision-hero-video--glassmorphic-telemetry-huds)
    - 2.6 [Phase 6: Navigation Ecosystem, Pill Mechanics & GSAP Drawer](#26-phase-6-navigation-ecosystem-pill-mechanics--gsap-drawer)
    - 2.7 [Phase 7: Interactive Science Showcase (Feature Grid, Metrics & 4-Stage Timeline)](#27-phase-7-interactive-science-showcase)
-   - 2.8 [Phase 8: Operational Command Dashboard, Map Engine & AI Studio](#28-phase-8-operational-command-dashboard-map-engine--ai-studio)
+   - 2.8 [Phase 8: Operational Command Dashboard & Map Engine Architecture](#28-phase-8-operational-command-dashboard--map-engine-architecture)
    - 2.9 [Phase 9: Role-Based Authentication Gateway & Institutional Footer](#29-phase-9-role-based-authentication-gateway--institutional-footer)
+   - 2.10 [Phase 10: Mission Control Command Center Overhaul & Emergency Action Dispatch](#210-phase-10-mission-control-command-center-overhaul--emergency-action-dispatch)
+   - 2.11 [Phase 11: Satellite AI Pattern Studio, Grad-CAM & Scientific Export Hub](#211-phase-11-satellite-ai-pattern-studio-grad-cam--scientific-export-hub)
+   - 2.12 [Phase 12: Interactive Navigation Ecosystem, GSAP Micro-Interactions & Action Cards Alignment](#212-phase-12-interactive-navigation-ecosystem-gsap-micro-interactions--action-cards-alignment)
 3. [Technology Stack & Dependency Inventory](#3-technology-stack--dependency-inventory)
 4. [Design System & Visual Identity Architecture](#4-design-system--visual-identity-architecture)
    - 4.1 [The 60-30-10 Golden Ratio Color Balance](#41-the-60-30-10-golden-ratio-color-balance)
@@ -36,6 +39,7 @@
    - 6.4 [Command Dashboard Components (`src/components/dashboard/`)](#64-command-dashboard-components)
    - 6.5 [AI Pattern Analyzer Components (`src/components/analyzer/`)](#65-ai-pattern-analyzer-components)
    - 6.6 [Map Rendering Canvas (`src/components/map/`)](#66-map-rendering-canvas)
+   - 6.7 [Cyclone AI Assistant & Explainability Layer (`src/components/xai/`)](#67-cyclone-ai-assistant--explainability-layer)
 7. [Routing Architecture & Page Walkthroughs](#7-routing-architecture--page-walkthroughs)
    - 7.1 [Root Public Landing Page (`/`)](#71-root-public-landing-page-)
    - 7.2 [Operational Geospatial Dashboard (`/dashboard`)](#72-operational-geospatial-dashboard-dashboard)
@@ -107,6 +111,24 @@ The frontend is built to shatter standard academic dashboard tropes. It synthesi
 │ [Phase 9: Role-Based Auth & Emergency Footer]                                                                  │
 │ • Developed `/login` and `/register` with role selector (Scientist, NDMA, Public) and encrypted auth UI        │
 │ • Engineered `GlobalFooter.tsx` with `/footer_video.mp4`, `GlareHover` NDMA 1078 helpline, and partner credits │
+│                                                                                                                 │
+│ [Phase 10: Mission Control Command Center Overhaul & Emergency Action Dispatch]                                 │
+│ • Built `ActionDispatchPanel.tsx` with 4-tier emergency escalation controls & countdown feedback                │
+│ • Engineered `CycloneStatusCard.tsx` with moving gradient headings, dual drop-shadows & Dvorak category badges   │
+│ • Enhanced `RealTimeParameters.tsx` with high-definition cyan text shadows & balanced metric spacing             │
+│                                                                                                                 │
+│ [Phase 11: Satellite AI Pattern Studio, Grad-CAM & Scientific Export Hub]                                       │
+│ • Built `SatelliteCanvas.tsx` with deep pan/zoom, sub-pixel LLCC crosshairs & RMW ring overlays                  │
+│ • Built `GradCamStudio.tsx` with layer opacity blending, Jet/Inferno colormaps & tactile film-grain noise       │
+│ • Built `DvorakTelemetryCard.tsx` with specular `ShinyBadge`, moving gradient pattern banner & softmax HUD       │
+│ • Engineered `PipelineExportHub.tsx` with 4 downstream actions, aligned to `RUN AI INFERENCE` styling & GSAP    │
+│ • Built `RadiometricAdjustmentsModal.tsx` & `RadiometricStrip.tsx` with `ElasticSlider` physics controls        │
+│ • Built `ScientificUploadModal.tsx` supporting INSAT-3DR HDF5, GeoTIFF, NetCDF-4, and PNG raster formats        │
+│                                                                                                                 │
+│ [Phase 12: Interactive Navigation Ecosystem, GSAP Micro-Interactions & Action Cards Alignment]                  │
+│ • Built `ScientistProfilePill.tsx` with responsive label roll-up & expanding GSAP circle flood wave             │
+│ • Built `AlertsPill.tsx`, `FullscreenButton.tsx`, `LayersButton.tsx`, `MagicRings.tsx`, and `SplitFlapText.tsx` │
+│ • Aligned all 4 Pipeline Export action cards to `RUN AI INFERENCE` styling, shadows, and GSAP bubble fill       │
 └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -154,13 +176,32 @@ The project transitioned from the Vite prototype to a full production architectu
 - Implemented `LandingMetrics.tsx`: Incorporating 4 interactive SVG rotating holographic radar sweep gauges.
 - Implemented `LandingTimeline.tsx`: Presenting the 4-stage IMD disaster timeline with dynamic watermark numerals that illuminate in stage alert colors on hover.
 
-### 2.8 Phase 8: Operational Command Dashboard, Map Engine & AI Studio
+### 2.8 Phase 8: Operational Command Dashboard & Map Engine Architecture
 - Built `src/app/(main)/dashboard/page.tsx`: Real-time weather parameters grid, active cyclone status card (Cyclone REMIGR BOB-02), Recharts temporal projection placeholder, and MapLibre GL + deck.gl canvas container.
 - Built `src/app/(main)/satellite-analyzer/page.tsx`: Multi-spectral sensor band toggling (TIR-1, TIR-2, WV, VIS), Dvorak BD enhancement curve, Grad-CAM attention blending slider (0-100%), automated T-number readout, and `ImageUploader.tsx`.
 
 ### 2.9 Phase 9: Role-Based Authentication Gateway & Institutional Footer
 - Created `src/app/(auth)/login/page.tsx` and `register/page.tsx`: Operational role selectors (Scientist, NDMA, Public), encrypted agency authentication forms, and ambient glow layout.
 - Engineered `GlobalFooter.tsx`: Incorporating `/footer_video.mp4`, `GlareHover` NDMA 1078 disaster hotline callout bar, `Dial1078Button`, `EvacuationZonesButton`, `WarpText` platform description, and institutional credits (IMD, ISRO, NOAA, WMO).
+
+### 2.10 Phase 10: Mission Control Command Center Overhaul & Emergency Action Dispatch
+- **`ActionDispatchPanel.tsx`**: Engineered a complete operational emergency dispatch panel for meteorological commanding officers. Features 4 tiered action buttons with live status badges, automated dispatch countdown latencies, and critical emergency action triggers (NDMA Red Alert Broadcast, Coastal Evacuation Corridors, Fishermen Offshore Recall, Port Authority Gale Warnings).
+- **`CycloneStatusCard.tsx` Upgrade**: Completely refactored the active storm status display with dynamic `heading-moving-gradient` animations flowing across the cyclone name (Blue → Cyan → White → Coral), multi-layered drop shadows (`drop-shadow(0 2px 6px rgba(0,0,0,0.9))` and `drop-shadow(0 4px 14px rgba(0,0,0,0.85))`), live wind speed gauge rings, sub-pixel LLCC coordinate readouts, and responsive Dvorak category badges.
+- **`RealTimeParameters.tsx` Visual Elevation**: Transformed the 6 real-time meteorological parameter cards with high-definition cyan typography (`#00F2FE`), multi-layered text shadows (`textShadow: "0 1px 2px #000000, 0 2px 6px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.9)"`), balanced spacing between values and progress tracks, and deep cyber abyss backgrounds.
+- **`TrendCharts.tsx` Real-Time Telemetry**: Deployed interactive Recharts area curves plotting observed vs. predicted pressure drops and sustained wind speeds with custom glassmorphic tooltips.
+
+### 2.11 Phase 11: Satellite AI Pattern Studio, Grad-CAM & Scientific Export Hub
+- **`SatelliteCanvas.tsx`**: Developed a high-performance interactive raster viewport with sub-pixel eye centroid tracking crosshairs, radius of maximum winds (RMW) dynamic overlay ring, real-time coordinate picking, zoom/pan controls, and false-color lookup tables.
+- **`GradCamStudio.tsx`**: Deployed an Explainable AI studio component rendering ConvNeXt-ViT layer 4 gradient attention maps over satellite imagery with adjustable colormaps (Jet, Inferno, Viridis), blend opacity sliders, prominent cyber borders, and tactile film-grain noise (`Noise.tsx`).
+- **`DvorakTelemetryCard.tsx`**: Architected the pattern classification HUD card with specular `ShinyBadge` for category telemetry, animated moving gradient pattern headings, deep void backdrop (`bg-[#070D18]/95`) preventing orange tint bleed, softmax probability distributions, and empirical T-number/CI metrics.
+- **`PipelineExportHub.tsx`**: Implemented a scientific export hub with 4 downstream pipeline action cards (Send to Trajectory, Commit to Archive, Export Report PDF, Raw JSON Payload), providing direct links to ensemble track forecasting and IMD advisory bulletin print generators.
+- **`RadiometricAdjustmentsModal.tsx` & `RadiometricStrip.tsx`**: Sensor calibration tools with brightness, contrast, gamma, and threshold sliders powered by `ElasticSlider`.
+- **`ScientificUploadModal.tsx`**: Multi-format raster ingestion interface supporting INSAT-3DR HDF5, GeoTIFF, NetCDF-4, and PNG satellite feeds.
+
+### 2.12 Phase 12: Interactive Navigation Ecosystem, GSAP Micro-Interactions & Action Cards Alignment
+- **`ScientistProfilePill.tsx`**: Built a specialized GSAP capsule pill button in the topbar indicating the logged-in scientist's identity (`Scientist (IMD)` on desktop, `SC` on mobile) with dynamic label roll-up physics, expanding cyan circle fill, and dark cyber text inversion on hover.
+- **Micro-Interaction Suite**: Integrated `AlertsPill.tsx` (pulsing alert counter), `FullscreenButton.tsx` (browser Fullscreen API with physics hover), `LayersButton.tsx` (GIS layer drawer trigger), `MagicRings.tsx` (concentric radar rings with pulse animations), and `SplitFlapText.tsx` (mechanical airport departure-board text animations).
+- **Export Hub Action Cards Alignment**: Upgraded all 4 action cards in `PipelineExportHub.tsx` to match the exact styling, depth, and interactive GSAP rising bubble hover effect of the **`RUN AI INFERENCE`** button while strictly preserving card shape, padding, two-line layout, and individual color themes (Cyan `#00F2FE`, Emerald `#10E7A2`, Coral `#FF5E36`, Tech Cyan `#00F2FE`).
 
 ---
 
@@ -378,10 +419,19 @@ d:/SIH 2026/
 │   │   └── page.tsx                            # Primary public Landing Page
 │   ├── components/
 │   │   ├── analyzer/
-│   │   │   └── ImageUploader.tsx               # Drag-and-drop HDF5/GeoTIFF raster uploader
+│   │   │   ├── DvorakTelemetryCard.tsx         # Dvorak pattern HUD with ShinyBadge, softmax & moving gradient
+│   │   │   ├── GradCamStudio.tsx               # Explainable AI Grad-CAM studio with colormaps & Noise overlay
+│   │   │   ├── ImageUploader.tsx               # Drag-and-drop HDF5/GeoTIFF raster uploader
+│   │   │   ├── InferenceHub.tsx                # Multi-model inference orchestrator with GSAP RunInferenceButton
+│   │   │   ├── PipelineExportHub.tsx           # Downstream scientific export hub with 4 GSAP rising bubble cards
+│   │   │   ├── RadiometricAdjustmentsModal.tsx # Full-screen sensor radiometric adjustment modal
+│   │   │   ├── RadiometricStrip.tsx            # Quick radiometric calibration strip
+│   │   │   ├── SatelliteCanvas.tsx             # Interactive deep-zoom raster canvas with sub-pixel LLCC & RMW ring
+│   │   │   └── ScientificUploadModal.tsx       # Multi-format satellite raster ingestion modal
 │   │   ├── dashboard/
-│   │   │   ├── CycloneStatusCard.tsx           # Active storm status & landfall countdown
-│   │   │   ├── RealTimeParameters.tsx          # 6-card meteorological parameters matrix
+│   │   │   ├── ActionDispatchPanel.tsx         # 4-Tier emergency action dispatch panel & alert triggers
+│   │   │   ├── CycloneStatusCard.tsx           # Active storm status with moving gradient title & Dvorak badge
+│   │   │   ├── RealTimeParameters.tsx          # 6-card meteorological matrix with cyan text shadows
 │   │   │   ├── SatelliteMapView.tsx            # Geospatial satellite preview card
 │   │   │   └── TrendCharts.tsx                 # Temporal projection area chart container
 │   │   ├── landing/
@@ -407,17 +457,22 @@ d:/SIH 2026/
 │   │   │   └── XaiFloatingWidget.tsx           # Reusable floating tactical pill widget & drawer modal
 │   │   └── ui/                                 # Custom primitive design system components
 │   │       ├── AlertBadge.tsx                  # Domain-specific badge (Warning, AI, Watch)
+│   │       ├── AlertsPill.tsx                  # Tactical alerts pill with pulsing emergency beacon
 │   │       ├── Badge.tsx                       # Standard semantic badge
 │   │       ├── Button.tsx                      # Primary, secondary, danger, ghost buttons
 │   │       ├── Card.tsx                        # Glassmorphic & outlined card wrapper
 │   │       ├── DashboardPill.tsx               # Launch Dashboard pill with GSAP circular hover
 │   │       ├── Dial1078Button.tsx              # NDMA emergency dialer button
+│   │       ├── ElasticSlider.tsx & .css        # Spring-physics slider controls for radiometric thresholds
 │   │       ├── EvacuationZonesButton.tsx       # Evacuation corridor routing trigger
 │   │       ├── FoldText.tsx & FoldText.css     # 3D letter origami unfolding animation (GSAP)
+│   │       ├── FullscreenButton.tsx            # Browser Fullscreen API trigger with physics hover
 │   │       ├── GlareHover.tsx & GlareHover.css # Interactive specular light glare effect
 │   │       ├── GlowingRidges.tsx               # Three.js procedural topographic terrain shader
 │   │       ├── GradientText.tsx & .css         # Animated flowing linear text gradient
+│   │       ├── LayersButton.tsx                # Tactical GIS layer drawer toggle button
 │   │       ├── LogoLoop.tsx & LogoLoop.css     # Smooth infinite marquee scrolling track
+│   │       ├── MagicRings.tsx & MagicRings.css # Concentric rotating radar telemetry rings
 │   │       ├── MenuPill.tsx                    # Tactical drawer trigger button
 │   │       ├── Noise.tsx & Noise.css           # Procedural fractal noise film grain canvas
 │   │       ├── PillNav.tsx & PillNav.css       # Complete pill navigation styles & math rules
@@ -426,8 +481,10 @@ d:/SIH 2026/
 │   │       ├── ReflectiveCard.tsx & .css       # React Bits liquid metallic displacement & sheen card/pill
 │   │       ├── SatellitePill.tsx               # Analyze Satellite Feed pill button
 │   │       ├── Scanner.tsx & Scanner.css       # Full-screen WebGL 2.0 OGL atmospheric shader
+│   │       ├── ScientistProfilePill.tsx        # IMD Scientist operational profile capsule pill with GSAP wave
 │   │       ├── ShinyBadge.tsx                  # Specular border & surface sweep pill badge
 │   │       ├── ShinyText.tsx & ShinyText.css   # Continuous text specular highlight sweep
+│   │       ├── SplitFlapText.tsx & .css        # Mechanical airport departure-board text animations
 │   │       ├── TextType.tsx & TextType.css     # Dynamic typewriter text streaming effect
 │   │       ├── TiltedCard.tsx & TiltedCard.css # 3D mouse perspective tilt card (Framer Motion)
 │   │       ├── WarningPill.tsx                 # Pulsing red emergency alert beacon pill
@@ -542,6 +599,13 @@ d:/SIH 2026/
 | **`PixelCard`** | `PixelCard.tsx` & `.css` | Open-source interactive canvas pixel shimmer card component from React Bits. Generates animated particle pixels on an HTML5 canvas responding to hover and focus with radial gradient glow. Configured for both standard cards and tactical AI chat modals (`pixel-card-modal`). |
 | **`PixelTransition`** | `PixelTransition.tsx` & `.css` | Open-source randomized pixel grid dissolve transition from React Bits powered by GSAP. Generates an $N \times N$ matrix of animated pixel blocks with staggered random reveal/hide tween sequences. Configured for both content cards and interactive tactical pill buttons (`pixel-pill-button`). |
 | **`ReflectiveCard`** | `ReflectiveCard.tsx` & `.css` | Open-source liquid metallic displacement shader component from React Bits. Uses dynamic SVG filter chain (`feTurbulence`, `feDisplacementMap`, `feSpecularLighting`, `feComponentTransfer`), live webcam feed or loop video reflection, fractal noise texture, and metallic sheen. Supports both standard card (`variant="card"`) and capsule button (`variant="pill"`) configurations. |
+| **`ScientistProfilePill`** | `ScientistProfilePill.tsx` | Operational profile capsule pill indicating IMD scientist credentials (`Scientist (IMD)` on desktop, `SC` on mobile). Uses circular GSAP flood expansion ($R, D, \text{originY}$), dual label-stack roll-up translation, and high-contrast dark cyber typography inversion on hover. |
+| **`AlertsPill`** | `AlertsPill.tsx` | Tactical warning pill displaying active emergency alert counts with a pulsing beacon dot, cyber cyan borders, and smooth GSAP hover interactions. |
+| **`ElasticSlider`** | `ElasticSlider.tsx` & `.css` | Spring-physics slider control for real-time radiometric calibration (contrast, gamma, threshold). Uses damped harmonic oscillator curves for fluid thumb movement and tactical HUD value callouts. |
+| **`FullscreenButton`** | `FullscreenButton.tsx` | Browser Fullscreen API toggle with physics-based scaling, cyber glassmorphism, multi-layer drop shadows, and tooltip indicators. |
+| **`LayersButton`** | `LayersButton.tsx` | Tactical GIS layer drawer trigger button with backdrop blur, cyan glow, and active state indicators. |
+| **`MagicRings`** | `MagicRings.tsx` & `.css` | Multi-ring concentric rotating radar and telemetry rings with pulse animations, range ticks, and orbital satellite coordinate marks. |
+| **`SplitFlapText`** | `SplitFlapText.tsx` & `.css` | Mechanical airport departure-board character cycling effect for telemetry and storm name reveals with 3D flip card perspectives. |
 | **`AlertBadge`** | `AlertBadge.tsx` | Semantic status badge mapping IMD Warning tiers (`stage-1` to `stage-4`), AI confidence, and hazard levels. |
 | **`Button`** | `Button.tsx` | Configurable button primitive (`primary`, `secondary`, `danger`, `ghost`, `glass`) with loading spinners. |
 | **`Card`** | `Card.tsx` | Glassmorphic card container with `backdrop-blur-xl`, border tokens, and elevation levels. |
@@ -578,31 +642,82 @@ d:/SIH 2026/
 
 ### 6.4 Command Dashboard Components (`src/components/dashboard/`)
 
-#### `CycloneStatusCard.tsx`
-- Displays active cyclone classification (e.g., *Category 4 Severe Cyclonic Storm "REMIGR"*).
-- Visualizes IMD warning stage badge (*Stage 3 Warning*).
-- Displays AI model confidence score ($96.4\%$) and estimated landfall countdown ($T-24\text{h}$ to Puri-Dhamra sector).
+#### 1. `CycloneStatusCard.tsx`
+- **Dynamic Specular Gradient Typography:** Features the high-impact `heading-moving-gradient` CSS animation applied across the cyclone headline (*CYCLONE "MOCHA"*), cycling seamlessly through Deep Blue (`#0052FF`) → Electric Cyan (`#00F2FE`) → Specular White (`#FFFFFF`) → Hazard Coral (`#FF6B4A`).
+- **Multi-Layered Drop Shadows:** Encapsulated in `.heading-gradient-shadow-wrapper` utilizing dual ambient drop shadows (`filter: drop-shadow(0 2px 6px rgba(0,0,0,0.9)) drop-shadow(0 4px 14px rgba(0,0,0,0.85))`) to lift text cleanly off dark glassmorphic backdrops.
+- **Dynamic Category & Warning Badges:** Automatically maps storm intensity to IMD warning stages (*Stage 3 Warning / Very Severe Cyclonic Storm*) with live color-coded status badges and pulsing radar indicators.
+- **Precision Meteorological Metrics:** Houses sub-pixel LLCC coordinate readouts ($16.2^\circ\text{N}, 88.4^\circ\text{E}$), maximum sustained winds ($185\text{ km/h}$ / $100\text{ kts}$), central pressure ($942\text{ hPa}$), and estimated landfall countdown ($T-24\text{h}$ to Dhamra-Puri coastline).
 
-#### `RealTimeParameters.tsx`
-- 6 responsive weather parameter cards:
-  1. *Max Wind Speed:* $155\text{ km/h}$ ($+12\text{ km/h}$ change).
-  2. *Central Pressure:* $964\text{ hPa}$ ($-6\text{ hPa}$ rapid drop).
-  3. *Sea Surface Temp:* $30.4^\circ\text{C}$ (Above threshold).
-  4. *Vertical Wind Shear:* $8.5\text{ kts}$ (Favorable).
-  5. *Relative Humidity:* $86\%$ (Mid-troposphere saturated).
-  6. *Estimated Rainfall:* $220\text{ mm/24h}$ (Extreme core band).
+#### 2. `RealTimeParameters.tsx`
+- **6-Matrix Meteorological Parameter Cards:**
+  1. *Max Wind Speed:* $155\text{ km/h}$ ($+12\text{ km/h}$ acceleration vector).
+  2. *Central Pressure:* $964\text{ hPa}$ ($-6\text{ hPa}$ rapid deepening indicator).
+  3. *Sea Surface Temperature:* $30.4^\circ\text{C}$ (Convective fuel threshold $>28.5^\circ\text{C}$).
+  4. *Vertical Wind Shear:* $8.5\text{ kts}$ (Highly favorable low-shear environment).
+  5. *Relative Humidity:* $86\%$ (Mid-tropospheric saturation).
+  6. *Estimated Rainfall Core:* $220\text{ mm/24h}$ (Extreme torrential band alert).
+- **High-Definition Cyan Typography & Text Shadows:** All parameter labels and values are styled in system cyan (`#00F2FE`) with multi-layered depth text shadows (`textShadow: "0 1px 2px #000000, 0 2px 6px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.9)"`).
+- **Balanced Visual Ergonomics:** Standardized line-heights and padding between parameter values, tabular units, and SVG progress bars to eliminate cramped spacing and ensure instantaneous scanability under high-stress command scenarios.
 
-#### `TrendCharts.tsx`
-- Container for Recharts temporal projection curves combining 24-hour historical observations with 48-hour AI ensemble intensity trajectory forecasts ($V_{max}$ knots and $P_c$ hPa).
+#### 3. `ActionDispatchPanel.tsx`
+- **Purpose:** Critical operational emergency response center enabling meteorological directors to trigger standardized multi-agency protocols.
+- **4-Tier Action Dispatchers:**
+  1. *Broadcast NDMA Red Alert:* Triggers mass SMS coastal warning broadcasts and emergency TV sirens.
+  2. *Offshore Fishermen Recall:* Dispatches NavIC/NAVTEX emergency vessel recall signals across coastal sectors.
+  3. *Port Authority Gale Warning:* Signals Signal-10 Danger Flags to Paradip, Dhamra, and Kolkata port commands.
+  4. *Mobilize NDRF / Coast Guard:* Dispatches pre-landfall staging orders to national disaster response battalions.
+- **Tactical Dispatch Latency:** Incorporates simulated countdown latencies, confirmation modals with agency credentials, and active dispatch state indicators.
+
+#### 4. `TrendCharts.tsx`
+- **Purpose:** Interactive telemetry graph container plotting 24-hour historical observations alongside 48-hour AI ensemble forecast trajectories.
+- **Dual-Axis Synchronization:** Plots Central Pressure drop ($P_c\text{ in hPa}$) on the primary axis against Peak Sustained Winds ($V_{max}\text{ in knots}$) on the secondary axis with customized glassmorphic tooltip inspectors.
 
 ---
 
 ### 6.5 AI Pattern Analyzer Components (`src/components/analyzer/`)
 
-#### `ImageUploader.tsx`
-- Drag-and-drop raster upload interface with visual drop-zone feedback.
-- Configured for INSAT-3DR HDF5, GeoTIFF, NetCDF, and PNG satellite formats.
-- Emits selected file to parent analyzer component for automated inference.
+#### 1. `SatelliteCanvas.tsx`
+- **Purpose:** Interactive geospatial raster viewport delivering sub-pixel analysis of geostationary satellite feeds.
+- **Sub-Pixel Eyewall Crosshairs:** Real-time reticle overlay highlighting the Low-Level Circulation Center (LLCC) centroid with sub-pixel precision.
+- **Radius of Maximum Winds (RMW) Overlay:** Dynamic concentric ring visualization mapping the RMW boundary ($28\text{ km}$) directly over convective eyewall bands.
+- **Interactive Inspection:** Supports smooth mouse-wheel zooming, pan translation, pixel brightness temperature readouts, and false-color palette switching.
+
+#### 2. `GradCamStudio.tsx`
+- **Purpose:** Explainable AI (Grad-CAM) activation inspection studio exposing deep neural feature attributions.
+- **Colormap Palette Switching:** Enables meteorologists to toggle activation heatmaps across *Jet*, *Inferno*, and *Viridis* spectral representations.
+- **Neural Layer Blending:** Real-time alpha blending slider ($0-100\%$) overlaying ConvNeXt-ViT / ResNet-50 layer-4 attention weights over raw thermal IR imagery.
+- **Analog Tactical Noise:** Ingests dynamic film-grain canvas overlay (`Noise.tsx`, `patternAlpha={15}`) and prominent cyber cyan borders for aerospace mission-control aesthetics.
+
+#### 3. `DvorakTelemetryCard.tsx`
+- **Dynamic Specular Category Badge:** Encapsulates the storm category (`VERY SEVERE CYCLONIC STORM (VSCS)`) within `ShinyBadge.tsx` featuring traveling edge sheen (`#FFA78B`), ambient surface sweep, and deep void backdrop (`bg-[#070D18]/95`) to prevent orange tint wash.
+- **Moving Gradient Pattern Banner:** Identified Meteorological Pattern title formatted in `heading-moving-gradient` with dual drop-shadows and system cyan labels with high-definition text shadows.
+- **Softmax Probability Distribution:** Visualizes model classification confidences across all 7 Dvorak patterns (Eye Pattern $96.4\%$, Curved Band $2.1\%$, Central Dense Overcast $1.0\%$, Shear Pattern $0.5\%$).
+- **Empirical Scale Metrics:** Real-time readouts for Automated Dvorak T-Number ($T5.5$), Current Intensity ($CI5.5$), and Knaff-Zehr estimated wind velocity.
+
+#### 4. `PipelineExportHub.tsx`
+- **Downstream Scientific Pipeline Hub:** Houses 4 mission-critical export action cards:
+  1. *Send to Trajectory Prediction:* Direct deep link handoff (`/forecast?llcc=...`) transferring LLCC coordinates, $V_{max}$, and $P_c$ to the 120-hour PINN ensemble forecaster.
+  2. *Commit to Research Archive:* One-click snapshot capture storing model weights, sensor telemetry, and activations into `/model-metrics`.
+  3. *Export Report (PDF):* Automated generation and print dispatch of official India Meteorological Department (IMD) formatted advisory bulletins.
+  4. *Raw JSON Payload:* Complete bounding box, telemetry, and probability array download.
+- **Exact Alignment to `RUN AI INFERENCE` Styling & Effect:**
+  - *Retained Card Shape & Geometry:* Preserves rectangular `rounded-xl` (`0.75rem`) card geometry with dual-line stacked content and right-hand icons.
+  - *Retained Palette Hues:* Preserves individual color themes (Trajectory: Cyan `#00F2FE`, Archive: Emerald `#10E7A2`, Report: Coral `#FF5E36`, JSON: Tech Cyan `#00F2FE`).
+  - *Cyber Glassmorphic Surface:* High-clarity backdrop blur (`backdrop-filter: blur(20px)`), translucent tinted base (`rgba(color, 0.10)`), luminous border (`1px solid rgba(color, 0.65)`), and top bevel highlight (`inset 0 1px 0 rgba(255, 255, 255, 0.4)`).
+  - *Interactive GSAP Rising Bubble Fill:* An expanding circular mask ($R, D, \text{originY}$) scales from $0 \to 2.2$ on hover from bottom center, smoothly flooding the card with the button's vibrant accent color.
+  - *Dual Label-Stack Roll-Up:* On hover, default text translates up ($y = -(h+12)$) while high-contrast dark cyber typography (`#050B14`) and solid dark icons slide up into place over the colored flood wave.
+  - *Hover Glow & Scale:* Border brightens to 100%, elevated neon box shadow flares (`0 0 28px rgba(color, 0.85)`), and subtle spring scale (`scale(1.02)`) engages before smoothly reversing on mouse leave.
+
+#### 5. `InferenceHub.tsx` & `RunInferenceButton`
+- **Model Orchestrator:** Manages execution across ConvNeXt-ViT, DenseNet-Dvorak, and Physics-Informed Neural Networks.
+- **Signature `RunInferenceButton`:** Pill-shaped capsule button with animated GSAP rising bubble fill, dark text roll-up, and real-time computation states (`Computing...` / `Run AI Inference`).
+
+#### 6. `RadiometricAdjustmentsModal.tsx` & `RadiometricStrip.tsx`
+- **Sensor Calibration Studio:** Full modal and rapid-access toolbar for adjusting sensor radiometric curves.
+- **`ElasticSlider` Controls:** Integrated physics spring sliders governing Brightness ($-50\text{ to }+50$), Contrast ($0.5\times\text{ to }2.5\times$), Gamma ($0.2\text{ to }3.0$), and Convective Threshold ($-80^\circ\text{C}\text{ to }-30^\circ\text{C}$).
+
+#### 7. `ScientificUploadModal.tsx` & `ImageUploader.tsx`
+- **Multi-Source Satellite Ingestion:** Supports automated parsing and validation of INSAT-3DR HDF5 (`.h5`), GeoTIFF (`.tif`), NetCDF-4 (`.nc`), and standard PNG/JPEG raster feeds with drag-and-drop feedback.
 
 ---
 
@@ -670,18 +785,21 @@ src/app/
 
 
 ### 7.2 Operational Geospatial Dashboard (`/dashboard`)
-- Ingests top parameter cards (`RealTimeParameters`).
-- Spans a 2-column geospatial satellite map canvas (`MapLayerCanvas`).
-- Spans a 1-column active cyclone status card (`CycloneStatusCard`) with sub-tabs toggling between `TrendCharts` and an embedded `XaiAssistantPanel`.
-- Features a header button and floating bottom-right tactical trigger that slides in a full-height `XaiAssistantPanel` drawer modal on demand.
+- Ingests top parameter matrix (`RealTimeParameters`) presenting 6 critical meteorological vectors with high-definition cyan typography and multi-layered text shadows.
+- Spans a high-performance geospatial satellite map canvas (`MapLayerCanvas`) rendering multi-layer INSAT-3DR TIR-1 rasters, atmospheric vector streamlines, and 120-hour PINN predicted trajectory cones.
+- Features `CycloneStatusCard` highlighting active Category 4 storm *Cyclone "MOCHA"* with flowing `heading-moving-gradient` specular title sweeps, dual drop shadows, and automated IMD warning stage badges.
+- Houses `ActionDispatchPanel` enabling operational commanders to initiate tiered multi-agency emergency orders (NDMA Red Alert Broadcast, Offshore Fishermen Recall, Port Authority Gale Warnings, NDRF/Coast Guard Pre-Staging) with automated latency countdowns.
+- Features interactive `TrendCharts` with dual-axis temporal projection graphs comparing 24-hour barometric drops against peak sustained wind trends.
+- Integrates `XaiAssistantPanel` both embedded within dashboard tabs and as a slide-over drawer modal summoned by `XaiFloatingWidget`.
 
 ### 7.3 AI Satellite Analyzer & Pattern Studio (`/satellite-analyzer`)
-- Ingests multi-spectral sensor band toggles (TIR-1, TIR-2, WV, VIS).
-- Supports Dvorak BD and Thermal Rainbow color enhancement curves.
-- Features a real-time Grad-CAM heatmap blend slider ($0-100\%$) for model explainability.
-- Displays inference readout: Automated Dvorak T-Number ($T5.5 / CI5.5$), estimated wind ($155\text{ km/h}$), central pressure ($964\text{ hPa}$), and LLCC coordinates.
-- Ingests `ImageUploader` for local HDF5/GeoTIFF raster evaluation.
-- Features a direct `[Explain Predictions]` header trigger and `[Launch Cyclone AI Assistant]` button opening the full XAI Assistant drawer modal.
+- Houses `SatelliteCanvas`: An interactive deep-zoom raster inspection viewport featuring sub-pixel Low-Level Circulation Center (LLCC) reticle crosshairs and dynamic Radius of Maximum Winds (RMW) overlay rings ($28\text{ km}$).
+- Features `GradCamStudio`: An Explainable AI studio component exposing ConvNeXt-ViT layer-4 feature attributions with live colormap switching (*Jet*, *Inferno*, *Viridis*), alpha opacity blending ($0-100\%$), and tactile film-grain noise texturing.
+- Houses `DvorakTelemetryCard`: High-precision meteorological HUD presenting specular `ShinyBadge` warning badges, `heading-moving-gradient` pattern banners, softmax distribution bars across 7 Dvorak convective topologies, and empirical $T5.5 / CI5.5$ intensity metrics.
+- Features `PipelineExportHub`: Scientific export center with 4 action cards (*Send to Trajectory*, *Commit to Archive*, *Export Report PDF*, *Raw JSON Payload*), engineered to match the exact cyber glass styling and interactive GSAP rising bubble hover animation of the `RUN AI INFERENCE` button.
+- Ingests `RadiometricAdjustmentsModal` and `RadiometricStrip` with physics-based `ElasticSlider` controls for sensor brightness, contrast, gamma, and convective threshold tuning.
+- Ingests `ScientificUploadModal` for ingesting INSAT-3DR HDF5, GeoTIFF, NetCDF-4, and PNG satellite datasets.
+- Includes `InferenceHub` with the signature GSAP capsule `RunInferenceButton` for triggering deep learning pipelines.
 
 ### 7.4 Authentication & Role Verification (`/login`, `/register`)
 - Role selector tabs allowing instant switching between **Scientist**, **NDMA/SDMA**, and **Public**.
@@ -816,6 +934,28 @@ $$\text{rotateY} = \left(\frac{x - x_0}{w} - 0.5\right) \times \text{amplitude}$
 
 With spring parameters: `damping: 30`, `stiffness: 100`, `mass: 2`.
 
+### 3. GSAP Expanding Bubble Mask & Dual-Stack Roll-Up (`PipelineExportHub.tsx`, `ScientistProfilePill.tsx`, `RunInferenceButton`)
+To achieve an organic fluid flood wave where an expanding circular mask originates from the bottom edge and engulfs wide rectangular action cards ($w \gg h$) without edge clipping:
+1. The circle diameter $D = 2R$ is calculated dynamically from the bounding box dimensions $w$ and $h$ using the circumscribed circle formula:
+   $$R = \frac{w^2 / 4 + h^2}{2h}$$
+2. The bottom offset $\Delta = R - \sqrt{\max\left(0, R^2 - w^2 / 4\right)} + 1$ places the circle tangent to the bottom edge.
+3. The transform origin is positioned at $\left(50\%, D - \Delta\right)$, ensuring the circle expands outward and upward from bottom-center.
+4. On hover, GSAP scales the circle from $0 \to 2.2$, while simultaneously driving dual content layers:
+   - Default Layer: $\text{translateY}(0) \to \text{translateY}(-(h+12))$ (slides out of top).
+   - Inverted Hover Layer: $\text{translateY}(h+60) \to \text{translateY}(0)$ with opacity $0 \to 1$ (slides into position with high-contrast `#050B14` cyber typography).
+
+### 4. Moving Specular Chromatic Gradient Sweeps (`globals.css`)
+Applied to primary headlines via `.heading-moving-gradient`:
+- A continuous linear color ramp: `linear-gradient(90deg, #0052FF 0%, #00F2FE 28%, #FFFFFF 50%, #FF6B4A 74%, #0052FF 100%)`.
+- Set to `background-size: 200% 100%` and clipped via `-webkit-background-clip: text`.
+- Driven by a GPU-accelerated CSS keyframe animation (`heading-gradient-flow` over $6\text{s}$ linear infinite), creating an aerospace-grade specular shimmer across characters.
+
+### 5. Damped Harmonic Oscillator Slider Physics (`ElasticSlider.tsx`)
+Tactile sensor radiometric calibration sliders leverage spring dynamics to prevent jerky adjustments:
+- Position interpolation is governed by the second-order differential equation:
+  $$m \frac{d^2x}{dt^2} + c \frac{dx}{dt} + k(x - x_{\text{target}}) = 0$$
+- Spring stiffness $k = 300$, damping ratio $\zeta = \frac{c}{2\sqrt{mk}} = 0.85$ (slightly underdamped for snappy tactile responsiveness), eliminating overshoot while providing physical resistance at boundary limits ($0\%$ and $100\%$).
+
 ---
 
 ## 11. Current Implementation Status & Future Expansion Roadmap
@@ -834,12 +974,22 @@ With spring parameters: `damping: 30`, `stiffness: 100`, `mass: 2`.
 - Multi-spectral AI pattern studio with sensor channel switching, Dvorak curve toggles, and Grad-CAM blending.
 - Drag-and-drop raster uploader supporting HDF5, GeoTIFF, NetCDF, and PNG.
 - Role-based authentication portal (`/login`, `/register`) supporting Scientist, NDMA, and Public roles.
-- Interactive Cyclone AI Assistant (`XaiAssistantPanel`) with fully visible dynamic 3-suggestion prompts (wrapping naturally with zero cutoffs or truncation, context-aware follow-ups across intensity, Grad-CAM vision, and PINN track topics with manual shuffle controls and zero layout voids), signature GSAP send button (`ExplainPill`) strictly preserving the original `rounded-xl` (12px) shape and 42px height while inheriting the top navbar's glassmorphic glow, expanding circular wave flood, and dual label roll-up physics, natural language reasoning, React Bits `PixelCard` particle shimmer (with 1.5s auto-disappear timer), molten `GradientText` moving gradient flow (Electric Purple `#9333EA` / `#A855F7` ↔ Solar Storm Orange `#FF5E36` / `#F97316`), Sky Blue (`#38BDF8`) subtitle typography, and a streamlined modal header.
+- Interactive Cyclone AI Assistant (`XaiAssistantPanel`) with fully visible dynamic 3-suggestion prompts, signature GSAP send button (`ExplainPill`), natural language reasoning, React Bits `PixelCard` particle shimmer, molten `GradientText` moving gradient flow, and streamlined modal header.
 - Tactically styled floating launcher widget (`XaiFloatingWidget`) with React Bits `PixelTransition` rounded-rectangle physics, proportional `<Bot />` icon, and dynamic Purple-to-Orange moving gradient typography.
 - Seamless multi-surface XAI integration across Landing Page (`LandingXaiSection`), Command Dashboard drawer/tabs, and AI Pattern Studio.
-- Official brand logo & favicon integration: Integrated the custom high-resolution 3D orbital cyclone satellite logo (`/logo.png`) across all application branding touchpoints (`GlobalNav`, `GlobalFooter`, `SlideOverMenu`, `Topbar`, `TopHeader`, and `AuthLayout`), and configured the specialized circular cyclone radar reticle emblem (`/favicon.png`) as the official browser favicon, shortcut, and Apple touch icon in Next.js App Router metadata and route handlers (`src/app/icon.png`, `src/app/apple-icon.png`).
+- Official brand logo & favicon integration across all touchpoints (`GlobalNav`, `GlobalFooter`, `SlideOverMenu`, `Topbar`, `TopHeader`, and `AuthLayout`).
 - Global footer with background video, NDMA 1078 disaster hotline callout bar, `GlareHover` mechanics, and `WarpText` liquid text displacement.
 - Decoupled global reactive state management via Zustand 5.
+- **Mission Control Emergency Action Dispatch Panel (`ActionDispatchPanel.tsx`):** 4-tier emergency protocol dispatcher (NDMA Red Alert Broadcast, Coastal Evacuation Corridors, Offshore Fishermen Recall, Port Authority Gale Warnings) with simulated latency countdowns and status indicators.
+- **Overhauled Cyclone Status Card (`CycloneStatusCard.tsx`):** Moving specular gradient title sweeps (`#0052FF` → `#00F2FE` → `#FFFFFF` → `#FF6B4A`), dual ambient drop shadows, live wind speed gauge rings, sub-pixel LLCC coordinate readouts, and automated IMD warning stage badges.
+- **Real-Time Meteorological Parameter Matrix (`RealTimeParameters.tsx`):** 6-card parameter grid with high-definition cyan typography (`#00F2FE`), multi-layered text shadows (`0 1px 2px #000, 0 2px 6px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.9)`), and balanced spacing.
+- **Interactive Geospatial Raster Viewport (`SatelliteCanvas.tsx`):** High-performance canvas with sub-pixel eye centroid crosshairs, dynamic Radius of Maximum Winds (RMW) overlay rings ($28\text{ km}$), pan/zoom controls, and false-color lookup tables.
+- **Explainable AI Activation Studio (`GradCamStudio.tsx`):** Neural attention inspection studio exposing ConvNeXt-ViT layer-4 activation heatmaps with colormap selection (*Jet*, *Inferno*, *Viridis*), alpha opacity blending ($0-100\%$), tactile film-grain noise (`Noise.tsx`), and prominent cyber borders.
+- **Automated Dvorak Pattern Telemetry HUD (`DvorakTelemetryCard.tsx`):** Specular `ShinyBadge` category telemetry, animated moving gradient pattern headings, deep void backdrop (`bg-[#070D18]/95`) preventing orange tint wash, softmax distributions across 7 Dvorak patterns, and empirical T-number/CI metrics.
+- **Downstream Scientific Pipeline Export Hub (`PipelineExportHub.tsx`):** 4 downstream action cards (*Send to Trajectory*, *Commit to Archive*, *Export Report PDF*, *Raw JSON Payload*), engineered to match the exact cyber glass styling and interactive GSAP rising bubble hover animation of the `RUN AI INFERENCE` button while strictly preserving card shape, padding, and individual color themes.
+- **Sensor Radiometric Calibration Suite (`RadiometricAdjustmentsModal.tsx` & `RadiometricStrip.tsx`):** Spring-physics slider controls (`ElasticSlider.tsx`) governing Brightness, Contrast, Gamma, and Convective Thresholds.
+- **Multi-Format Satellite Raster Ingestion Hub (`ScientificUploadModal.tsx` & `ImageUploader.tsx`):** Direct ingestion and validation of INSAT-3DR HDF5, GeoTIFF, NetCDF-4, and PNG datasets.
+- **Tactical Navigation & Micro-Interactions Suite:** IMD Scientist operational profile capsule pill (`ScientistProfilePill.tsx`), tactical alerts counter pill (`AlertsPill.tsx`), Fullscreen API toggle (`FullscreenButton.tsx`), GIS layer drawer toggle (`LayersButton.tsx`), concentric rotating telemetry rings (`MagicRings.tsx`), and mechanical departure-board text flipping (`SplitFlapText.tsx`).
 
 ### 🚀 Upcoming Milestones (Future Scope):
 1. **Live FastMapLibre GL Integration:** Connect MapLibre GL instance to live WMS/WMTS raster tile servers (MOSDAC INSAT-3DR TIR-1 layers).
